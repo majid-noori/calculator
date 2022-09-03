@@ -166,4 +166,4 @@ function calculate() {
     typeArr[i] = 1;
     display.innerHTML = final 
 }
-
+//finish
