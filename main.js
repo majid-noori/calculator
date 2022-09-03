@@ -1,13 +1,10 @@
-str     = '0'; 
+str     = ''; 
 l_type  = 0;  
 i       = 0;
 arr     = [];
 typeArr = [];
 keyDown = false;
-display = document.querySelector(".displayText");
-
-
-
+display = document.querySelector(".displayText"); 
 
 document.body.addEventListener('click', function (evt) {
     if (evt.target.className === 'btn') {
@@ -17,8 +14,6 @@ document.body.addEventListener('click', function (evt) {
     }
 }, false); 
 
- 
-
 
 document.onkeyup = function(e){
 	if (e.key == "Shift") {
@@ -26,14 +21,11 @@ document.onkeyup = function(e){
     }
 }
 
-
-
 document.onkeydown = checkKey; 
 function checkKey(e) {
 	if (e.key == "Shift") {
         keyDown = true;
     }
-
     if (keyDown == false) {
         e = e || window.event;
         if (e.keyCode >= 48 && e.keyCode <= 57) {
@@ -44,7 +36,7 @@ function checkKey(e) {
             undoText()
         } else if (e.key == "/" || e.key == "-") {
             createDisplay(2, e.key)
-        } else if (e.key == "0") {
+        } else if (e.key == "Enter") {
             calculate()
         }
     }
@@ -54,9 +46,6 @@ function checkKey(e) {
        }
     } 
 }
-
-
-
 
 
 function createDisplay(type, val) {
@@ -82,13 +71,10 @@ function createDisplay(type, val) {
             typeArr[i] = 2;
         }
 
-
-
-
         if (l_type == 0 && type == 1 || l_type > 0) {
             l_type = type;
         } 
-        displayText(arr)   
+        displayText(arr)  
     } else if (type == 3) {
         calculate(arr)
     } else if (type == 4) {
@@ -131,7 +117,7 @@ function undoText() {
     displayText(arr)
 }
 
-function displayText(arr = '0') {
+function displayText(arr = '') {
     str = '';
     if (arr != '') {
         for (ii in arr) {
@@ -143,7 +129,7 @@ function displayText(arr = '0') {
 
 function calculate() {
     final = 0;
-    lc_type = 0;  
+    lc_type = 0; 
     ls_func = ''; 
     if (arr != '') {
         for (ii in arr) {
@@ -163,6 +149,8 @@ function calculate() {
                     final = final * num;
                 } else if (ls_func == "/") {
                     final = final / num;
+                } else if (Is_func == "%" ) {
+                    final = final % num
                 }
             }
             lc_type = type;
@@ -178,3 +166,4 @@ function calculate() {
     typeArr[i] = 1;
     display.innerHTML = final 
 }
+
